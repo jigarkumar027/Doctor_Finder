@@ -25,7 +25,9 @@ SECRET_KEY = 'nv+&b9oekjbo_cm^k=y73bk+w(iu@n(8&pnavtlvo&+6#(=6ux'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'djangodocfinder.herokuapp.com'
+]
 
 
 # Application definition
