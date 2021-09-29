@@ -1,0 +1,255 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from azim.commonsupport.com/Docpro/book-appointment.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 02 Dec 2020 04:54:06 GMT -->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<title>Doctor Finder - Patient Case</title>
+
+<!-- Fav Icon -->
+<link rel="icon" href="{% static '/assets/images/favicon.ico' %}" type="image/x-icon">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+
+<!-- Stylesheets -->
+<link href="{% static '/assets/css/font-awesome-all.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/flaticon.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/owl.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/bootstrap.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/jquery.fancybox.min.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/animate.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/color.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/nice-select.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/style.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/responsive.css' %}" rel="stylesheet">
+
+</head>
+
+
+<!-- page wrapper -->
+<body>
+
+    <div class="boxed_wrapper">
+
+        <!-- preloader -->
+        <div class="preloader"></div>
+        <!-- preloader -->
+
+        <section class="page-title-two">
+            <div class="title-box centred bg-color-2">
+                <div class="pattern-layer">
+                    <div class="pattern-1" style="background-image: url({% static '/assets/images/shape/shape-70.png' %});"></div>
+                    <div class="pattern-2" style="background-image: url({% static '/assets/images/shape/shape-71.png' %});"></div>
+                </div>
+                <div class="auto-container">
+                    <div class="title">
+                        <h1>Show Case</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="lower-content">
+                <ul class="bread-crumb clearfix">
+                    <li><a href="{% url 'ddashboard' %}">Home</a></li>
+                    <li>Show Case</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- doctors-dashboard -->
+        <section class="doctors-dashboard bg-color-3">
+            <div class="left-panel">
+                <div class="profile-box">
+                    <div class="upper-box">
+                        <figure class="profile-image"><img src="assets/images/resource/profile-2.png" alt=""></figure>
+                        <div class="title-box centred">
+                            <div class="inner">
+                                <h3>Dr. {{request.session.Firstname}} {{request.session.Lastname}}</h3>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-info">
+                        <ul class="list clearfix">
+                            <li><a href="{% url 'ddashboard' %}" ><i class="fas fa-columns"></i>Dashboard</a></li>
+                            <li><a href="{% url 'showallappo'%}" ><i class="fas fa-calendar-alt"></i>Appointments</a></li>
+                            <li><a href="my-patients.html"><i class="fas fa-wheelchair"></i>My Patients</a></li>
+                            <!-- <li><a href="add-listing.html"><i class="fas fa-plus-circle"></i>Add Listing</a></li> -->
+                            <li><a href="{% url 'showcase' %}" class="current"><i class="fas fa-plus-circle"></i>Show Case</a></li>
+                            <li><a href="{% url 'schedule' %}"><i class="fas fa-clock"></i>Schedule Timing</a></li>
+                            <li><a href="review.html"><i class="fas fa-star"></i>Reviews</a></li>
+                            <!-- <li><a href="message.html"><i class="fas fa-comments"></i>Messages</a><span>20</span></li> -->
+                            <li><a href="{% url 'profilepage' pk=request.session.id %}"><i class="fas fa-user"></i>My Profile</a></li>
+                            <li><a href="{% url 'dchangepass' %}"><i class="fas fa-unlock-alt"></i>Change Password</a></li>
+                            <li><a href="{% url 'logout' pk=request.session.id %}"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="right-panel">
+                <div class="content-container">
+                    <div class="outer-container">
+                        <div class="doctors-appointment">
+                            <div class="title-box">
+                                <h3>Patients Case</h3>
+                            </div>
+                            {% if key66 %}
+                            <div class="doctors-list">
+                                <div class="table-outer">
+                                    <table class="doctors-table">
+                                        <thead class="table-header">
+                                            <tr>
+                                                <th>Patient Name</th>
+                                                <th>Email</th>
+                                                <th>Gender</th>
+                                                <th>disease</th>
+                                                <th>Symptoms</th>
+                                                <th>Medicine</th> 
+                                            </tr>    
+                                        </thead>
+                                        <tbody>
+                                            {% for i in key66 %}
+                                            <tr>
+                                                <form method="post" action="{% url 'showcase' %}">
+                                                    {% csrf_token %}
+                                                    <td>
+                                                        <div class="name-box">
+                                                            <h5>{{i.patient_id.Firstname}} {{i.patient_id.Lastname}}</h5>
+                                                            <span class="designation">{{i.patient_id.id}}</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <p>{{i.patient_id.user_id.Email}}</p>
+                                                        <span class="time"></span>
+                                                    </td>
+                                                    <td>
+                                                        <p>{{i.patient_id.Gender}}</p>
+                                                        <span class="time"></span>
+                                                    </td>
+                                                    <td>
+                                                        <p>{{i.disease}}</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>{{i.symptoms}}</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>{{i.medicine}}</p>
+                                                    </td>
+                                                    
+                                                </form>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>    
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- doctors-dashboard -->
+        {% endif %}
+
+        <!-- appointment-section -->
+        
+        <!-- <section class="appointment-section bg-color-3">
+            <div class="auto-container">
+                <div class="row clearfix">
+                     
+                    <div class="col-lg-8 col-md-12 col-sm-12 left-column">
+                        <div class="appointment-information">
+                            <div class="title-box">
+                                <h3>Case Information</h3>
+                            </div>
+                            <div class="inner-box">
+                                <div class="information-form">
+                                    <h3>Your Information:</h3>
+                                    {% if key66 %}
+                                    <form action="{% url 'showcase' %}" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="docid" id="" value="{{key66.doctor_id.id}}">
+                                        <input type="hidden" name="patientid" id="" value="{{key66.patient_id.id}}">
+                                        <div class="row clearfix">
+                                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                                <label>Patient ID</label>
+                                                <input type="text" name="patientid" placeholder="" required="" value="{{key66.patient_id.id}}">
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                                <label>Firstname</label>
+                                                <input type="text" name="fname" placeholder="Enter your Firstname" required="" value="{{key66.patient_id.Firstname}}">
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                                <label>Lastname</label>
+                                                <input type="text" name="lname" placeholder="Enter your Lastname" required="" value="{{key66.patient_id.Lastname}}">
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                                <label>Email</label>
+                                                <input type="email" name="email" placeholder="Enter your email" required="" value="{{key66.patient_id.user_id.Email}}">
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 form-group">
+                                                <label>Gender</label>
+                                                <input type="text" name="gender" placeholder="gender" required="" value="{{key66.patient_id.Gender}}">
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 form-group">
+                                                <label>disease</label>
+                                                <input type="text" name="disease" placeholder="disease" required="" value="{{key66.patient_id.disease}}">
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 form-group">
+                                                <label>Symptoms</label>
+                                                <input type="text" name="symptoms" placeholder="symptoms" required="" value="{{key66.patient_id.symptoms}}">
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 form-group">
+                                            </div>
+                                            <button type="submit" value="Confirm" class="theme-btn-one">Confirm<i class="icon-Arrow-Right"></i></button>
+                                        </div>
+                                    </form>
+                                    {% endif %}
+                            
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+        <!-- appointment-section end -->
+
+        <!--Scroll to top-->
+        <button class="scroll-top scroll-to-target" data-target="html">
+            <span class="fa fa-arrow-up"></span>
+        </button>
+    </div>
+
+
+    <!-- jequery plugins -->
+    <script src="{% static '/assets/js/jquery.js' %}"></script>
+    <script src="{% static '/assets/js/popper.min.js' %}"></script>
+    <script src="{% static '/assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static '/assets/js/owl.js' %}"></script>
+    <script src="{% static '/assets/js/wow.js' %}"></script>
+    <script src="{% static '/assets/js/validation.js' %}"></script>
+    <script src="{% static '/assets/js/jquery.fancybox.js' %}"></script>
+    <script src="{% static '/assets/js/appear.js' %}"></script>
+    <script src="{% static '/assets/js/scrollbar.js' %}"></script>
+    <script src="{% static '/assets/js/tilt.jquery.js' %}"></script>
+    <script src="{% static '/assets/js/jquery.paroller.min.js' %}"></script>
+    <script src="{% static '/assets/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static '/assets/js/product-filter.js' %}"></script>
+
+    <!-- map script -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-CE0deH3Jhj6GN4YvdCFZS7DpbXexzGU"></script>
+    <script src="{% static '/assets/js/gmaps.js' %}"></script>
+    <script src="{% static '/assets/js/map-helper.js' %}"></script>
+
+    <!-- main-js -->
+    <script src="{% static '/assets/js/script.js' %}"></script>
+
+</body><!-- End of .page_wrapper -->
+
+<!-- Mirrored from azim.commonsupport.com/Docpro/book-appointment.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 02 Dec 2020 04:54:09 GMT -->
+</html>

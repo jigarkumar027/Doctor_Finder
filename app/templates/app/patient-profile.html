@@ -1,0 +1,266 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from azim.commonsupport.com/Docpro/patient-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 02 Dec 2020 04:54:06 GMT -->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<title>Doctor Finder - Patient Profile Page</title>
+
+<!-- Fav Icon -->
+<link rel="icon" href="{% static '/assets/images/favicon.ico' %}" type="image/x-icon">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+
+<!-- Stylesheets -->
+<link href="{% static '/assets/css/font-awesome-all.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/flaticon.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/owl.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/bootstrap.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/jquery.fancybox.min.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/animate.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/color.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/nice-select.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/style.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/responsive.css' %}" rel="stylesheet">
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        function check_contact(){
+            var c=document.frm.contact.value;
+            var reg=/^[0-9]+$/;
+
+            if(c.trim()==""){
+                document.getElementById("error").innerHTML="plzz Enter contact";
+            }
+            else if(!reg.test(c)){
+                document.getElementById("error").innerHTML="plzz Enter only numbers";
+            }
+            else if(c.length != 10){
+                document.getElementById("error").innerHTML="plzz Enter only 10 numbers";
+            }
+            else{
+                document.getElementById("error").innerHTML="";
+            } 
+        }
+        function check_birthdate(){
+            var f=document.frm.birthdate.value;
+            var reg=/(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$/;
+
+            if(f.trim()==""){
+                document.getElementById("error1").innerHTML="please Enter Date";
+            }
+            else{
+                document.getElementById("error1").innerHTML="";
+            }   
+        }
+
+    </script>
+
+</head>
+
+
+<!-- page wrapper -->
+<body>
+
+    <div class="boxed_wrapper">
+
+        <!-- preloader -->
+        <div class="preloader"></div>
+        <!-- preloader -->
+
+        <!--page-title-two-->
+        <section class="page-title-two">
+            <div class="title-box centred bg-color-2">
+                <div class="pattern-layer">
+                    <div class="pattern-1" style="background-image: url(assets/images/shape/shape-70.png);"></div>
+                    <div class="pattern-2" style="background-image: url(assets/images/shape/shape-71.png);"></div>
+                </div>
+                <div class="auto-container">
+                    <div class="title">
+                        <h1>Patient Profile</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="lower-content">
+                <ul class="bread-crumb clearfix">
+                    <li><a href="{% url 'pdashboard' %}">Home</a></li>
+                    <li>Patient Profile</li>
+                </ul>
+            </div>
+        </section>
+        <!--page-title-two end-->
+
+
+        <!-- doctors-dashboard -->
+        <section class="doctors-dashboard bg-color-3">
+            <div class="left-panel">
+                <div class="profile-box patient-profile">
+                    <div class="upper-box">
+                        <figure class="profile-image"><img src="assets/images/resource/profile-1.png" alt=""></figure>
+                        <div class="title-box centred">
+                            <div class="inner">
+                                <h3>{{request.session.Firstname}} {{request.session.Lastname}}</h3>
+                                <p><i class="fas fa-calendar-alt"></i>Oct 05, 2083,  38 Years</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-info">
+                        <ul class="list clearfix">
+                            <li><a href="{% url 'pdashboard' %}" ><i class="fas fa-columns"></i>Dashboard</a></li>
+                            <li><a href="{% url 'showalldoctor' %}"><i class="fas fa-heart"></i>Show Doctors</a></li>
+                            <!-- <li><a href="schedule-timing-2.html"><i class="fas fa-clock"></i>Schedule Timing</a></li> -->
+                            <!-- <li><a href="message-2.html"><i class="fas fa-comments"></i>Messages</a><span>20</span></li> -->
+                            <li><a href="{% url 'showappo' %}" class=""><i class="fas fa-clock"></i>Your Appointment</a></li>
+                            <li><a href="{% url 'homepharmacy' %}"><i class="fas fa-clock"></i>Pharmacy</a></li>
+                            
+                            <li><a href="{% url 'profilepage' pk=request.session.id %}" class="current"><i class="fas fa-user"></i>My Profile</a></li>
+                            <li><a href="{% url 'pchangepass' %}"><i class="fas fa-unlock-alt"></i>Change Password</a></li>
+                            <li><a href="{% url 'logout' pk=request.session.id %}"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="right-panel">
+                <div class="content-container">
+                    <div class="outer-container">
+                        {% if key2 %}
+                        <form action="{% url 'updatepat' pk=request.session.id %}" method="post" enctype="multipart/form-data" name="frm">
+                        {% csrf_token %}
+                        <div class="add-listing my-profile">
+                            <div class="single-box">
+                                <div class="title-box">
+                                    <h3>Basic Information</h3>
+                                    <a href="add-listing.html" class="menu"><i class="icon-Dot-menu"></i></a>
+                                </div>
+                                <div class="inner-box">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                        
+                                        <img src="{{MEDIA_URL}}{{key2.profile_pic.url}}" alt="" srcset=""  width="150px" height="150px">
+                                    </div>
+                                    
+                                        <div class="row clearfix">
+                                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                                <label>Upload Profile Pic</label>
+                                                <input type="file" name="image">
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                                <label>First name</label>
+                                                <input type="text" name="fname" placeholder="Enter first name" required="" value="{{key2.Firstname}}">
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                                <label>Last name</label>
+                                                <input type="text" name="lname" placeholder="Enter last name" required="" value="{{key2.Lastname}}">
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                                <label>Email</label>
+                                                <input type="text" name="email" placeholder="email" required="" value="{{request.session.Email}}">
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                                <label>Date of birth</label>
+                                                <input type="date" name="birthdate" placeholder="Date of birth" required="" value="{{key2.birthdate}}" onblur="check_birthdate();">
+                                                <td>
+                                                    <span id="error1" style="color: red;"></span>
+                                                </td>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                                <label>Gender</label>
+                                                <input type="text" name="Gender" placeholder="Gender" required="" value="{{key2.Gender}}">
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                                <label>Mobile number</label>
+                                                <input type="text" name="contact" placeholder="Your Phone" required="" value="{{key2.Contact}}" minlength="10" maxlength="10" onblur="check_contact();">
+                                                <td>
+                                                    <span id="error" style="color: red;"></span>
+                                                </td>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                                <label>Address</label>
+                                                <input type="text" name="Address" placeholder="Address" required="" value="{{key2.Address}}">
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                                <label>Blood Group</label>
+                                                <input type="text" name="blood_group" placeholder="Blood Group" required="" value="{{key2.blood_group}}">
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                                <label>City</label>
+                                                <input type="text" name="city"  required="" placeholder="city" value="{{key2.city}}">
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                                <label>State</label>
+                                                <input type="text" name="state" required="" placeholder="state" value="{{key2.state}}">
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                                <label>Blood Pressure</label>
+                                                <input type="text" name="blood_presure" placeholder="blood_presure" required="" value="{{key2.blood_presure}}">
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                                <label>sugar</label>
+                                                <input type="text" name="sugar" placeholder="sugar" required="" value="{{key2.sugar}}">
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                                <label>Haemoglobin</label>
+                                                <input type="text" name="Haemoglobin" placeholder="Haemoglobin" required="" value="{{key2.Haemoglobin}}">
+                                            </div>
+                                            <!--div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                                <label>Note to the doctor (optional)</label>
+                                                <textarea name="message" placeholder="Write your note..."></textarea>
+                                            </div-->
+                                        </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="btn-box">
+                                
+                                <button type="submit" value="Save changes" class="theme-btn-one">Save Change<i class="icon-Arrow-Right"></i></button>
+                                <a href="" class="cancel-btn">Cancel</a>
+                            </div>
+                        </div>
+                    </form>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- doctors-dashboard -->
+
+
+        <!--Scroll to top-->
+        <button class="scroll-top scroll-to-target" data-target="html">
+            <span class="fa fa-arrow-up"></span>
+        </button>
+    </div>
+
+
+    <!-- jequery plugins -->
+    <script src="{% static '/assets/js/jquery.js' %}"></script>
+    <script src="{% static '/assets/js/popper.min.js' %}"></script>
+    <script src="{% static '/assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static '/assets/js/owl.js' %}"></script>
+    <script src="{% static '/assets/js/wow.js' %}"></script>
+    <script src="{% static '/assets/js/validation.js' %}"></script>
+    <script src="{% static '/assets/js/jquery.fancybox.js' %}"></script>
+    <script src="{% static '/assets/js/appear.js' %}"></script>
+    <script src="{% static '/assets/js/scrollbar.js' %}"></script>
+    <script src="{% static '/assets/js/tilt.jquery.js' %}"></script>
+    <script src="{% static '/assets/js/jquery.paroller.min.js' %}"></script>
+    <script src="{% static '/assets/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static '/assets/js/product-filter.js' %}"></script>
+
+    <!-- map script -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-CE0deH3Jhj6GN4YvdCFZS7DpbXexzGU"></script>
+    <script src="{% static '/assets/js/gmaps.js' %}"></script>
+    <script src="{% static '/assets/js/map-helper.js' %}"></script>
+
+    <!-- main-js -->
+    <script src="{% static '/assets/js/script.js' %}"></script>
+
+</body><!-- End of .page_wrapper -->
+
+<!-- Mirrored from azim.commonsupport.com/Docpro/patient-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 02 Dec 2020 04:54:06 GMT -->
+</html>

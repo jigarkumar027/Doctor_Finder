@@ -1,0 +1,309 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from azim.commonsupport.com/Docpro/book-appointment.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 02 Dec 2020 04:54:06 GMT -->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<title>Docpro - HTML 5 Template Preview</title>
+
+<!-- Fav Icon -->
+<link rel="icon" href="{% static '/assets/images/favicon.ico' %}" type="image/x-icon">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+
+<!-- Stylesheets -->
+<link href="{% static '/assets/css/font-awesome-all.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/flaticon.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/owl.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/bootstrap.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/jquery.fancybox.min.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/animate.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/color.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/nice-select.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/style.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/responsive.css' %}" rel="stylesheet">
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        function check_mstime(){
+            var f=document.frm.mstime.value;
+            var reg=/^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/;
+
+            if(f.trim()==""){
+                document.getElementById("error").innerHTML="please Enter Time";
+                // swal("Good job!", "Enter valid firstname", "success");
+            }
+            else if(!reg.test(f)){
+                document.getElementById("error").innerHTML="please Enter Time";
+            }
+            else{
+                document.getElementById("error").innerHTML="";
+            }   
+        }
+        function check_metime(){
+            var f=document.frm.metime.value;
+            var reg=/^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/;
+
+            if(f.trim()==""){
+                document.getElementById("error1").innerHTML="please Enter Time";
+                // swal("Good job!", "Enter valid firstname", "success");
+            }
+            else if(!reg.test(f)){
+                document.getElementById("error1").innerHTML="please Enter Time";
+            }
+            else{
+                document.getElementById("error1").innerHTML="";
+            }   
+        }
+        function check_estime(){
+            var f=document.frm.estime.value;
+            var reg=/^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/;
+
+            if(f.trim()==""){
+                document.getElementById("error2").innerHTML="please Enter Time";
+                // swal("Good job!", "Enter valid firstname", "success");
+            }
+            else if(!reg.test(f)){
+                document.getElementById("error2").innerHTML="please Enter Time";
+            }
+            else{
+                document.getElementById("error2").innerHTML="";
+            }   
+        }
+        function check_eetime(){
+            var f=document.frm.eetime.value;
+            var reg=/^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/;
+
+            if(f.trim()==""){
+                document.getElementById("error3").innerHTML="please Enter Time";
+                // swal("Good job!", "Enter valid firstname", "success");
+            }
+            else if(!reg.test(f)){
+                document.getElementById("error3").innerHTML="please Enter Time";
+            }
+            else{
+                document.getElementById("error3").innerHTML="";
+            }   
+        }
+        function check_adate(){
+            var f=document.frm.adate.value;
+            var reg=/(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$/;
+
+            if(f.trim()==""){
+                document.getElementById("error4").innerHTML="please Enter Date";
+                // swal("Good job!", "Enter valid firstname", "success");
+            }
+            // else if(!reg.test(f)){
+            //     document.getElementById("error4").innerHTML="please Enter Date";
+            // }
+            else{
+                document.getElementById("error4").innerHTML="";
+            }   
+        } 
+        function check_status()
+        {
+        var e = document.frm.status.value;
+        var strUser = e.options[e.selectedIndex].value;
+
+        var strUser1 = e.options[e.selectedIndex].text;
+            if(strUser==0)
+            {
+                document.getElementById("error5").innerHTML="Please select a Status";
+            }
+        }
+            
+    </script>
+
+</head>
+
+
+<!-- page wrapper -->
+<body>
+
+    <div class="boxed_wrapper">
+
+        <!-- preloader -->
+        <div class="preloader"></div>
+        <!-- preloader -->
+
+        <!--page-title-two-->
+        <section class="page-title-two">
+            <div class="title-box centred bg-color-2">
+                <div class="pattern-layer">
+                    <div class="pattern-1" style="background-image: url({% static '/assets/images/shape/shape-70.png' %});"></div>
+                    <div class="pattern-2" style="background-image: url({% static '/assets/images/shape/shape-71.png' %});"></div>
+                </div>
+                <div class="auto-container">
+                    <div class="title">
+                        <h1>Schedule-Timing</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="lower-content">
+                <div class="auto-container">
+                    <ul class="bread-crumb clearfix">
+                        <li><a href="{% url 'ddashboard' %}">Home</a></li>
+                        <li>Schedule-Timing</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!--page-title-two end-->
+
+
+        <!-- appointment-section -->
+        <section class="appointment-section bg-color-3">
+            <div class="auto-container">
+                <div class="row clearfix">
+                    <div class="col-lg-8 col-md-12 col-sm-12 left-column">
+                        <div class="appointment-information">
+                            <div class="title-box">
+                                <h3>Schedule-Timing Information</h3>
+                            </div>
+                            <div class="inner-box">
+                                <div class="information-form">
+                                    <h3>Schedule-Timing Information:</h3>
+                                    {% if msg %}
+
+                                    <strong><p style="color:green;">{{msg}}</p></strong>
+                                    {% endif %}
+                                    <form action="{% url 'insertavail' pk=request.session.id %}" method="post" enctype="multipart/form-data" name="frm">
+                                        {% csrf_token %}
+                                        <div class="row clearfix">
+                                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                                <label><b>-- Morning Days --</b></label>
+                                                <input type="checkbox" name="morningday" id="morningday" value="Monday"> Monday <br>
+
+                                                <input type="checkbox" name="morningday" id="morningday" value="Tuesday"> Tuesday <br>
+
+                                                <input type="checkbox" name="morningday" id="morningday" value="Wednesday"> Wednesday <br>
+
+                                                <input type="checkbox" name="morningday" id="morningday" value="Thruesday"> Thruesday <br>
+
+                                                <input type="checkbox" name="morningday" id="morningday" value="Friday"> Friday <br>
+
+                                                <input type="checkbox" name="morningday" id="morningday" value="Saturday"> Saturday <br>
+
+                                                <input type="checkbox" name="morningday" id="morningday" value="Sunday"> Sunday <br>
+
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                                <label><b>-- Evening Days --</b></label>
+                                                <input type="checkbox" name="eveningday" id="eveningday" value="Monday"> Monday <br>
+
+                                                <input type="checkbox" name="eveningday" id="eveningday" value="Tuesday"> Tuesday <br>
+
+                                                <input type="checkbox" name="eveningday" id="eveningday" value="Wednesday"> Wednesday <br>
+
+                                                <input type="checkbox" name="eveningday" id="eveningday" value="Thruesday"> Thruesday <br>
+
+                                                <input type="checkbox" name="eveningday" id="eveningday" value="Friday"> Friday <br>
+
+                                                <input type="checkbox" name="eveningday" id="eveningday" value="Saturday"> Saturday <br>
+
+                                                <input type="checkbox" name="eveningday" id="eveningday" value="Sunday"> Sunday <br>
+                                                   
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                                <label>Start Time</label>
+                                                <input type="time" name="mstime" placeholder="" required="" onblur="check_mstime();">
+                                                <td>
+                                                    <span id="error" style="color: red;"></span>
+                                                </td>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 form-group">
+                                                <label>Start Time</label>
+                                                <input type="time" name="estime" placeholder="" required="" onblur="check_estime();">
+                                                <td>
+                                                    <span id="error1" style="color: red;"></span>
+                                                </td>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                                <label>End Time</label>
+                                                <input type="time" name="metime" placeholder="" required="" onblur="check_metime();">
+                                                <td>
+                                                    <span id="error2" style="color: red;"></span>
+                                                </td>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 form-group">
+                                                <label>End Time</label>
+                                                <input type="time" name="eetime" placeholder="" required="" onblur="check_eetime();">
+                                                <td>
+                                                    <span id="error3" style="color: red;"></span>
+                                                </td>
+                                            </div>
+                                            <div class="col-lg-6 col-md-12 col-sm-12 form-group" >
+                                                <label for="status">Choose Status:</label>
+                                                <select name="status" id="Status" onblur="check_status();">
+
+                                                <option value="True">True</option>
+                                                <option value="False">False</option>
+                                                </select>
+                                                <td>
+                                                    <span id="error5" style="color: red;"></span>
+                                                </td>
+                                                <!-- <label>Status</label>
+                                                <input type="text" name="status" placeholder="status" required=""> -->
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                                <label>Avail Date</label>
+                                                <input type="date" name="adate" placeholder="" required="" onblur="check_adate();">
+                                                <td>
+                                                    <span id="error4" style="color: red;"></span>
+                                                </td>
+                                            </div>
+                                            <div class="lg-6 col-col-md-6 col-sm-12 form-group">
+                                                <button type="submit" value="Save changes" class="theme-btn-one">Save Change<i class="icon-Arrow-Right"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- appointment-section end -->
+
+
+        <!--Scroll to top-->
+        <button class="scroll-top scroll-to-target" data-target="html">
+            <span class="fa fa-arrow-up"></span>
+        </button>
+    </div>
+
+
+    <!-- jequery plugins -->
+    <script src="{% static '/assets/js/jquery.js' %}"></script>
+    <script src="{% static '/assets/js/popper.min.js' %}"></script>
+    <script src="{% static '/assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static '/assets/js/owl.js' %}"></script>
+    <script src="{% static '/assets/js/wow.js' %}"></script>
+    <script src="{% static '/assets/js/validation.js' %}"></script>
+    <script src="{% static '/assets/js/jquery.fancybox.js' %}"></script>
+    <script src="{% static '/assets/js/appear.js' %}"></script>
+    <script src="{% static '/assets/js/scrollbar.js' %}"></script>
+    <script src="{% static '/assets/js/tilt.jquery.js' %}"></script>
+    <script src="{% static '/assets/js/jquery.paroller.min.js' %}"></script>
+    <script src="{% static '/assets/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static '/assets/js/product-filter.js' %}"></script>
+
+    <!-- map script -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-CE0deH3Jhj6GN4YvdCFZS7DpbXexzGU"></script>
+    <script src="{% static '/assets/js/gmaps.js' %}"></script>
+    <script src="{% static '/assets/js/map-helper.js' %}"></script>
+
+    <!-- main-js -->
+    <script src="{% static '/assets/js/script.js' %}"></script>
+
+</body><!-- End of .page_wrapper -->
+
+<!-- Mirrored from azim.commonsupport.com/Docpro/book-appointment.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 02 Dec 2020 04:54:09 GMT -->
+</html>

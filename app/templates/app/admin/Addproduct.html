@@ -1,0 +1,338 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from davur.dexignzone.com/xhtml/form-element.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Dec 2020 08:22:40 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Doctor Finder - Add Product</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <!-- Custom Stylesheet -->
+    <link href="{% static '/admin/vendor/bootstrap-select/dist/css/bootstrap-select.min.css' %}" rel="stylesheet">
+    <link href="{% static '/admin/css/style.css' %}" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+	function check_Productname(){
+	    var f = document.frm.Productname.value;
+	    var reg = /^[a-zA-Z]+$/;
+      
+	    if(f.trim()==""){
+	        document.getElementById("error").innerHTML="Please Enter  Product Name"; 
+	    }else if(!reg.test(f)){
+	        document.getElementById("error").innerHTML="Please Enter Valid Product Name"; 
+	    }else{
+	        document.getElementById("error").innerHTML="";
+	    }
+	}
+      
+	function check_Price(){
+	    var l = document.frm.Price.value;
+	    var reg = /^[0-9]+$/;
+      
+	    if(l.trim()==""){
+	        document.getElementById("error1").innerHTML="Please Enter  Price"; 
+	    }else if(!reg.test(l)){
+	        document.getElementById("error1").innerHTML="Please Enter Valid Price"; 
+	    }else{
+	        document.getElementById("error1").innerHTML="";
+	    }
+	}
+	function check_ProductDescription(){
+	    var l = document.frm.ProductDescription.value;
+	    var reg = /^[a-z]+$/;
+      
+	    if(l.trim()==""){
+	        document.getElementById("error2").innerHTML="Please Enter  Product Description"; 
+	    }else if(!reg.test(l)){
+	        document.getElementById("error2").innerHTML="Please Enter Valid Product Description "; 
+	    }else{
+	        document.getElementById("error2").innerHTML="";
+	    }
+	}
+	function check_Category(){
+	    var empty = document.frm.Category.value;
+	    
+
+		if (empty == "0") {
+		alert('Please select an item');
+		return false;
+		}
+		return true;
+	}
+	
+      
+</script>
+</head>
+
+<body>
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="sk-three-bounce">
+            <div class="sk-child sk-bounce1"></div>
+            <div class="sk-child sk-bounce2"></div>
+            <div class="sk-child sk-bounce3"></div>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        <!--**********************************
+            Nav header start
+        ***********************************-->
+        <div class="nav-header">
+            <a href="index.html" class="brand-logo">
+                <img src="{% static '/customer/images/FL.png' %}" width="300" height="100" alt=" "> 
+                <img class="logo-compact" src="images/logo-text.png" alt="">
+                <img class="brand-title" src="images/logo-text.png" alt="">
+            </a>
+
+            <div class="nav-control">
+                <div class="hamburger">
+                    <span class="line"></span><span class="line"></span><span class="line"></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="header">
+            <div class="header-content">
+                <nav class="navbar navbar-expand">
+                    <div class="collapse navbar-collapse justify-content-between">
+                       
+                        <ul class="navbar-nav header-right">
+							
+                           
+                               
+                            <li class="nav-item dropdown header-profile">
+                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
+									<div class="header-info">
+										<span>Hello, <strong>{{request.session.Pharmaname}}</strong></span>
+									</div>
+                                    <!-- <img src="images/profile/pic1.jpg" width="20" alt=""/> -->
+                                </a>
+                                
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="deznav">
+	<div class="deznav-scroll">
+			        <ul class="metismenu" id="menu">
+				
+                        <li><a href="{% url 'Home'   %}">Home</a></li>
+	                  <li><a href="{% url 'Addproduct'   %}">Add Product</a></li>
+		        <li><a href="{% url 'Showproduct'  pk=request.session.id  %}">Show Product</a></li>
+		        <!-- <li><a href="{% url 'showcategory' %}">show Category </a></li> -->
+		        <li><a href="{% url 'profilepage' pk=request.session.id %}">Profile</a></li>
+		        <li><a href="{% url 'logout' pk=request.session.id %}">Logout</a></li>
+	        
+
+	    
+	
+			        
+			        
+        </div>
+      </div>
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+       
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <div class="container-fluid">
+                <div class="row page-titles mx-0">
+                    <div class="col-sm-6 p-md-0">
+                        <div class="welcome-text">
+                    
+                        </div>
+                    </div>
+                    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0)">ADD Product</a></li>
+                        </ol>
+                    </div>
+                </div>
+		<div class="col-xl-8 col-lg-14">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">ADD Product</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="basic-form">
+				
+                                        <form action="{% url 'AddProduct'  pk=request.session.id %}" method="post" enctype="multipart/form-data" name="frm">
+                                            {% csrf_token %}
+                                           
+                                            <input type="hidden" name="pharmacy_id" id="" value="">
+				    
+
+                                                  <div class="form-row">
+					
+                                                      <div class="form-group col-md-12">
+                                                          <label>Product Name</label>
+                                                          <input type="text" name="Productname" class="form-control" placeholder="Product name" onblur="check_Productname();">
+					        <td>
+						<span id="error" style=" color: red;"></span>
+					      </td>
+                                                      </div>
+                                                      <div class="form-group col-md-12">
+                                                          <label>Product Description</label>
+                                                          <input type="text" name="ProductDescription" class="form-control" placeholder="Product Description" onblur="check_ProductDescription();" >
+					        <td>
+						<span id="error2" style=" color:red; "></span>
+					      </td>
+                                                      </div>
+                                                      <div class="form-group col-md-12">
+                                                          <label>Price</label>
+                                                          <input type="text" name="Price" class="form-control" placeholder="Price" onblur="check_Price();">
+					        <td>
+						<span id="error1" style=" color:red; "></span>
+					      </td>
+                                                      </div>
+                                                      <div class="form-group col-md-12">
+                                                          <label>Image</label>
+                                                          <input type="file" name="Image" class="form-control">
+                                                      </div>
+                                                      <div class="form-group col-md-12">
+                                                            <label>Expirydate</label>
+                                                            <input type="date" name="Expirydate" class="form-control" placeholder="Expirydate">
+                                                        </div>
+                                                        <div class="form-group col-md-12">
+                                                            <label>Mfgdate</label>
+                                                            <input type="date" name="Mfgdate" class="form-control" placeholder="Mfgdate">
+                                                        </div>
+                                                        <div class="form-group col-md-12">
+                                                            <label>Details</label>
+                                                            <input type="text" name="Details" class="form-control" placeholder="Details">
+                                                        </div>
+                                                        <div class="form-group col-md-12">
+                                                            <label for="status">Choose Status:</label>
+						<select name="status" id="Status">
+						<option value="True">True</option>
+						<option value="False">False</option>
+						</select>
+					       </div>
+
+					      
+					       <!-- <div class="form-group col-md-12">
+						
+                                                            <label for="category">Choose category:</label>
+						{% if key9 %}
+						
+						<select name="Category" id="Category" >
+
+							
+								<option selected>Choose...</option>
+								{% for i in key9 %}
+								<option>{{i.Title}}</option>
+								{% endfor %}
+							     
+						</select>
+						<td>
+							<span id="empty" style=" color: red;"></span>
+						</td>
+						{% endif %}
+					       
+					       </div> -->
+					        
+                                                        <div class="form-group col-md-12">
+                                                            <label>Quantity</label>
+                                                            <input type="text" name="Quantity" class="form-control" placeholder="Quantity">
+                                                        </div>
+					
+                                                  </div>
+					
+                                                  <!-- <div class="form-row">
+                                                      <div class="form-group col-md-4">
+                                                          <label>State</label>
+                                                          <select id="inputState" class="form-control">
+                                                              <option selected>Choose...</option>
+                                                              <option>Option 1</option>
+                                                              <option>Option 2</option>
+                                                              <option>Option 3</option>
+                                                          </select>
+                                                      </div> -->
+                                                      
+                                                
+                                                  
+                                                  <button type="submit" class="btn btn-primary">Save</button>
+                                        </form>
+				
+
+				
+                                    </div>
+                                </div>
+                            </div>
+					    </div>
+
+            <!--**********************************
+                Footer start
+            ***********************************-->
+            <div class="footer">
+                <div class="copyright">
+                    <p>Copyright © Designed &amp; Developed by <a href="http://dexignzone.com/" target="_blank">DexignZone</a> 2020</p>
+                </div>
+            </div>
+            <!--**********************************
+                Footer end
+            ***********************************-->
+
+            <!--**********************************
+            Support ticket button start
+            ***********************************-->
+
+            <!--**********************************
+            Support ticket button end
+            ***********************************-->
+
+            
+        </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <!-- Required vendors -->
+    <script src="{% static '/admin/vendor/global/global.min.js' %}"></script>
+	<script src="{% static '/admin/vendor/bootstrap-select/dist/js/bootstrap-select.min.js' %}"></script>
+    <script src="{% static '/admin/vendor/chart.js/Chart.bundle.min.js' %}"></script>
+    <script src="{% static '/admin/js/custom.min.js' %}"></script>
+	<script src="{% static '/admin/js/deznav-init.js' %}"></script>
+	<!-- Apex Chart -->
+	<script src="{% static '/admin/vendor/apexchart/apexchart.js' %}"></script>
+    
+
+
+</body>
+
+
+<!-- Mirrored from davur.dexignzone.com/xhtml/form-element.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Dec 2020 08:22:40 GMT -->
+</html>

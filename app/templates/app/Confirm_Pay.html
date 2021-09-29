@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from azim.commonsupport.com/Docpro/book-appointment.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 02 Dec 2020 04:54:06 GMT -->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<title>Doctor Finder - Book-Appointment</title>
+
+<!-- Fav Icon -->
+<link rel="icon" href="{% static '/assets/images/favicon.ico' %}" type="image/x-icon">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+
+<!-- Stylesheets -->
+<link href="{% static '/assets/css/font-awesome-all.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/flaticon.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/owl.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/bootstrap.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/jquery.fancybox.min.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/animate.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/color.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/nice-select.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/style.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/responsive.css' %}" rel="stylesheet">
+
+</head>
+
+
+<!-- page wrapper -->
+<body>
+
+    <div class="boxed_wrapper">
+
+        <!-- preloader -->
+        <div class="preloader"></div>
+        <!-- preloader -->
+
+
+        <!-- main header -->
+        <header class="main-header style-two">
+
+        <!--page-title-two-->
+        <section class="page-title-two">
+            <div class="title-box centred bg-color-2">
+                <div class="pattern-layer">
+                    <div class="pattern-1" style="background-image: url(assets/images/shape/shape-70.png);"></div>
+                    <div class="pattern-2" style="background-image: url(assets/images/shape/shape-71.png);"></div>
+                </div>
+                <div class="auto-container">
+                    <div class="title">
+                        <h1>Confirmation Page</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="lower-content">
+                <div class="auto-container">
+
+                </div>
+            </div>
+        </section>
+        <!--page-title-two end-->
+
+
+        <!-- appointment-section -->
+        <section class="appointment-section bg-color-3">
+            <div class="auto-container">
+                <div class="row clearfix">
+                {% if allapp %}
+                    <div class="col-lg-8 col-md-12 col-sm-12 left-column">
+                        <div class="booking-information">
+                            <div class="title-box">
+                                <h3>Booking Summary</h3>
+                            </div>
+                            
+                                <div class="inner-box">
+                                    <div class="single-box">
+                                        <ul class="clearfix">
+                                            <li>Date<span>{{allapp.appointment_bookdate}}</span></li>
+                                            <li>Time<span>{{allapp.appotime}}</span></li>
+                                            <li>Doctor name<span>{{allapp.doctor_id.Firstname}} {{allapp.doctor_id.Lastname}}</span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="single-box">
+                                        <ul class="clearfix">
+                                            <li>General Consultation<span>{{allapp.total}}</span></li>
+                                            <!-- <li>Back Pain<span>60</span></li> -->
+                                        </ul>
+                                    </div>
+                                    <div class="total-box">
+                                        <h5>Total<span>{{allapp.total}}</span></h5>
+                                    </div>
+                                </div>
+                                <form action="{% url 'pay' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="date" id="" value="{{allapp.appointment_bookdate}}">
+                                <input type="hidden" name="time" id="" value="{{allapp.appotime}}">
+                                <input type="hidden" name="doctorname" id="" value="{{allapp.doctor_id.Firstname}} {{allapp.doctor_id.Lastname}}">
+                                <input type="hidden" name="generalfees" id="" value="{{allapp.total}}">
+                                <input type="hidden" name="total" id="" value="{{allapp.total}}">
+                                <div class="btn-box">
+                                    <button type="submit" value="Confirm" class="theme-btn-one">Confirm and Pay<i class="icon-Arrow-Right"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
+                </div>
+            </div>
+        </section>
+        <!-- appointment-section end -->
+
+        <!--Scroll to top-->
+        <button class="scroll-top scroll-to-target" data-target="html">
+            <span class="fa fa-arrow-up"></span>
+        </button>
+    </div>
+
+
+    <!-- jequery plugins -->
+    <script src="{% static '/assets/js/jquery.js' %}"></script>
+    <script src="{% static '/assets/js/popper.min.js' %}"></script>
+    <script src="{% static '/assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static '/assets/js/owl.js' %}"></script>
+    <script src="{% static '/assets/js/wow.js' %}"></script>
+    <script src="{% static '/assets/js/validation.js' %}"></script>
+    <script src="{% static '/assets/js/jquery.fancybox.js' %}"></script>
+    <script src="{% static '/assets/js/appear.js' %}"></script>
+    <script src="{% static '/assets/js/scrollbar.js' %}"></script>
+    <script src="{% static '/assets/js/tilt.jquery.js' %}"></script>
+    <script src="{% static '/assets/js/jquery.paroller.min.js' %}"></script>
+    <script src="{% static '/assets/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static '/assets/js/product-filter.js' %}"></script>
+
+    <!-- map script -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-CE0deH3Jhj6GN4YvdCFZS7DpbXexzGU"></script>
+    <script src="{% static '/assets/js/gmaps.js' %}"></script>
+    <script src="{% static '/assets/js/map-helper.js' %}"></script>
+
+    <!-- main-js -->
+    <script src="{% static '/assets/js/script.js' %}"></script>
+
+</body><!-- End of .page_wrapper -->
+
+<!-- Mirrored from azim.commonsupport.com/Docpro/book-appointment.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 02 Dec 2020 04:54:09 GMT -->
+</html>

@@ -1,0 +1,257 @@
+{% load static %}
+
+
+<html>
+          <head>
+           <link href="{% static '/admin/vendor/jqvmap/css/jqvmap.min.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href="{% static '/admin/vendor/chartist/css/chartist.min.css' %}">
+          <link href="{% static '/admin/vendor/bootstrap-select/dist/css/bootstrap-select.min.css' %}" rel="stylesheet">
+          <link href="{% static '/admin/css/style.css' %}" rel="stylesheet">
+	<link href="{% static '/admin/../../cdn.lineicons.com/2.0/LineIcons.css' %}" rel="stylesheet">
+
+        <link href="{% static  '/customer/css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{% static  '/customer/css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{% static  '/customer/css/font-awesome.css' %}" rel="stylesheet">
+	<!--pop-up-box-->
+	<link href="{% static  '/customer/css/popuo-box.css' %}" rel="stylesheet" type="text/css" media="all" />
+	<!--//pop-up-box-->
+	<!-- price range -->
+	<link rel="stylesheet" type="text/css" href="{% static  '/customer/css/jquery-ui1.css' %}">
+          </head>
+          <body>
+                    <div class="header-bot">
+                              <div class="header-bot_inner_wthreeinfo_header_mid">
+                                        <!-- header-bot-->
+                                        <div class="col-md-4 logo_agile">
+                                                  
+                                                                      
+                                                                      
+                                                  <img src="{% static '/customer/images/FL.png' %}" width="300" height="100" alt=" "> 
+                                                  
+                                        </div>
+                                        <!-- header-bot -->
+                                        <div class="col-md-8 header">
+                                                  <!-- header lists -->
+                                                    <ul>
+                                                            <!-- <a class="play-icon popup-with-zoom-anim"></a>
+                                                            <li><a href="{% url 'homepharmacy' %}">Pharmacy</a></li>  -->
+                                                            <!-- <li>
+                                                                      <a class="play-icon popup-with-zoom-anim" href="#small-dialog1">
+                                                                                <span class="fa fa-map-marker" aria-hidden="true"></span> Shop Locator</a>
+                                                            </li>
+                                                            <li>
+                                                                      <a href="#" data-toggle="modal" data-target="#myModal1">
+                                                                                <span class="fa fa-truck" aria-hidden="true"></span>Track Order</a>
+                                                            </li>
+                                                            <li>
+                                                                      <span class="fa fa-phone" aria-hidden="true"></span> 001 234 5678
+                                                            </li>
+                                                            <li>
+                                                                      <a href="#" data-toggle="modal" data-target="#myModal1">
+                                                                                <span class="fa fa-unlock-alt" aria-hidden="true"></span> Sign In </a>
+                                                            </li>
+                                                            <li>
+                                                                      <a href="#" data-toggle="modal" data-target="#myModal2">
+                                                                                <span class="fa fa-pencil-square-o" aria-hidden="true"></span> Sign Up </a>
+                                                            </li> -->
+                                                            <li class="active">
+                                                                <a class="nav-stylehead" href="{% url 'pdashboard'  %}">Home
+                                                                    <span class="sr-only">(current)</span>
+                                                                </a>
+                                                            </li>
+                                                            <li class="">
+                                                                <a class="nav-stylehead" href="about.html">Faq</a>
+                                                            </li>
+                                                            
+                                                            
+                                                            <li class="">
+                                                                <a class="nav-stylehead" href="faqs.html">Contact</a>
+                                                            </li>
+                                                            
+                                                            <li class="">
+                                                                <a class="nav-stylehead" href="{% url 'myorder' %}">My Order</a>
+                                                            </li>
+                                                            
+                                                        
+                                                            <li>
+                                                                <p>
+                                                                    <h3>Welcome 
+                                                                        {{request.session.Firstname}}</h3>
+                                                                </p>
+                                                            </li>
+                                                        </ul>
+                                        
+                                                        
+                                                        
+                                                        <!-- //header lists -->
+                                                        <!-- search -->
+                                                        <div class="agileits_search">
+                                                            <form method='GET' action="{% url 'search'  %}" method="POST">
+                                                                {% csrf_token %}
+                                                                <input type="Search" name="query" id="query" placeholder="Search For Medicines and HealthProducts" required="">
+                                                                <button type="submit" class="btn btn-default" aria-label="Left Align">
+                                                                    <span class="fa fa-search" aria-hidden="true"> </span>
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                        <!-- //search -->
+                                                        <!-- cart details -->
+                                                        
+                                                        <div class="top_nav_right">
+                                                            <div class="wthreecartaits wthreecartaits2 cart cart box_1">
+                                                                <form action="{% url 'cartpro'  pk=request.session.id %}" method="post" class="last">
+                                                                    {% csrf_token %}
+                                                                    <button class="w3view-cart" type="submit" name="submit" value="">
+                                                                        <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                  <!-- //cart details -->
+                                                 
+                                        </div>
+                                        <div class="clearfix"></div>
+                              </div>
+                    </div>
+                    <div class="services-breadcrumb">
+                        <div class="agile_inner_breadcrumb">
+                            <div class="container">
+                                <ul class="w3_short">
+                                    <li>
+                                        <a href="{% url 'homepharmacy' %}">Home</a>
+                                        <i>|</i>
+                                    </li>
+                                    <li>Checkout</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    {% if keyc %}
+			        {% if keyp %}          
+                    <div class="row">
+                             
+                              <div class="col-xl-10">
+                                  <div class="card">
+                                      <div class="card-body">
+                                        <div class="row">
+                                                 
+                                              <div class="col-md-5 order-md-1">
+                                                        
+                                                  <h4 class="mb-4">Billing address</h4>
+                                                  <form class="needs-validation" action="{% url 'pay' %}" method="post" >
+                                                    {% csrf_token %}
+                                                      <div class="row">
+                                                          <div class="col-md-6 mb-3">
+                                                              <label for="firstName">First name</label>
+                                                              <input type="text" class="form-control" name="fname" placeholder="" value="{{keyc.Firstname}}" required="">
+                                                              
+                                                          </div>
+                                                          <div class="col-md-6 mb-3">
+                                                              <label for="lastName">Last name</label>
+                                                              <input type="text" class="form-control"  name="lname"  placeholder="" value="{{keyc.Lastname}}" required="">
+                                                              
+                                                          </div>
+                                                      </div>
+                    
+                                                     
+                    
+                                                      <div class="mb-3">
+                                                          <label for="email">Email </label>
+                                                          <input type="email" class="form-control" id="email" value="{{request.session.Email}}" placeholder="you@example.com">
+                                                          
+                                                      </div>
+                    
+                                                      <div class="mb-3">
+                                                          <label for="address">Address</label>
+                                                          <input type="text" class="form-control" id="address" value="{{keyc.Address}}" placeholder="1234 Main St" required="">
+                                                         
+                                                      </div>
+                                                      <div class="mb-3">
+                                                        <label for="address">Total</label>
+                                                        <input type="hidden" class="form-control" name="total" id="address" value={{sub_total}} placeholder="1234 Main St" required="">
+                                                       
+                                                    </div>
+                    
+                                                      <div class="mb-3">
+                                                          <label for="address2">City </label>
+                                                          <input type="text" class="form-control" id="address2" value="{{keyc.city}}" placeholder="Total">
+                                                      </div>
+                    
+                                                     
+                                                         
+                                                          <div class="mb-3">
+                                                              <label for="state">State</label>
+                                                              <input type="text" class="form-control" id="address2" value="{{keyc.state}}" placeholder="State">
+                                                              
+                                                          </div>
+                                                          
+                                                         
+                                                     
+                                                     
+                    
+                                                      <h4 class="mb-3">Payment</h4>
+                    
+                    
+                                                    <hr class="mb-4">
+                                                      <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to
+                                                          checkout</button>
+                                                  </form>
+                                        </div>
+                                              <div class="col-md-6 order-md-2 mb-6">
+                                                  <h4 class="d-flex justify-content-between align-items-center mb-6">
+                                                    <h4 class="mb-2">Your Cart :</h4>
+                                                      
+                                                  </h4>
+                                                  
+                                                  {% for i in keyp %} 
+                                                  <ul class="list-group mb-3">
+                                                      
+                                                      <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                                          <div>
+                                                           
+                                                              <h6 class="my-2">{{i.Productname}} </h6>
+                                                              
+                                                          </div>
+                                                          <h6 class="my-2">{{i.cartqty}}</h6>
+                                                          <span class="text-muted">{{i.Total}}</span>
+                                                      </li>
+                                                     
+                                                      {% endfor %}
+                                                      <li class="list-group-item d-flex justify-content-between">
+                                                          <span>Total</span>
+                                                          <strong>{{sub_total}}</strong>
+                                                      </li>
+                                                  </ul>
+                                                 
+                    
+                                                 
+                                              </div>
+                                          </div>
+                                      </div>
+                              </div>
+                              </div>
+                              </div>
+                              {% endif %}
+			                    {% endif %}
+                    </centre>
+
+                          
+                    <div class="copy-right">
+                        <div class="container">
+                            <p>© 2021 Doctor Finder. All Rights Reserved 
+                                
+                            </p>
+                        </div>
+                    </div>
+          </body>
+          
+	
+</html>
+         
+
+          
+	
+
+
+	

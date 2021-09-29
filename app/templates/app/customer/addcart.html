@@ -1,0 +1,416 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+	<title>Pharmacy</title>
+	<!--/tags -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<!--//tags -->
+	<link href="{% static  '/customer/css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{% static  '/customer/css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+	<link href="{% static  '/customer/css/font-awesome.css' %}" rel="stylesheet">
+	<!--pop-up-box-->
+	<link href="{% static  '/customer/css/popuo-box.css' %}" rel="stylesheet" type="text/css" media="all" />
+	<!--//pop-up-box-->
+	<!-- price range -->
+	<link rel="stylesheet" type="text/css" href="{% static  '/customer/css/jquery-ui1.css' %}">
+	
+	<!-- fonts -->
+	<link href="fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
+</head>
+
+<body>
+	<!-- top-header -->
+	<!-- <div class="header-most-top">
+		<p>Pharmacy</p>
+	</div> -->
+	<!-- //top-header -->
+	<!-- header-bot-->
+	<div class="header-bot">
+		<div class="header-bot_inner_wthreeinfo_header_mid">
+			<!-- header-bot-->
+			<div class="col-md-4 logo_agile">
+				
+						
+						
+				<img src="{% static '/customer/images/FL.png' %}" width="300" height="100" alt=" "> 
+				
+			</div>
+			<!-- header-bot -->
+			<div class="col-md-8 header">
+				<!-- header lists -->
+				<ul>
+					<!-- <a class="play-icon popup-with-zoom-anim"></a>
+					<li><a href="{% url 'homepharmacy' %}">Pharmacy</a></li>  -->
+					<!-- <li>
+						<a class="play-icon popup-with-zoom-anim" href="#small-dialog1">
+							<span class="fa fa-map-marker" aria-hidden="true"></span> Shop Locator</a>
+					</li>
+					<li>
+						<a href="#" data-toggle="modal" data-target="#myModal1">
+							<span class="fa fa-truck" aria-hidden="true"></span>Track Order</a>
+					</li>
+					<li>
+						<span class="fa fa-phone" aria-hidden="true"></span> 001 234 5678
+					</li>
+					<li>
+						<a href="#" data-toggle="modal" data-target="#myModal1">
+							<span class="fa fa-unlock-alt" aria-hidden="true"></span> Sign In </a>
+					</li>
+					<li>
+						<a href="#" data-toggle="modal" data-target="#myModal2">
+							<span class="fa fa-pencil-square-o" aria-hidden="true"></span> Sign Up </a>
+					</li> -->
+					<li class="active">
+						<a class="nav-stylehead" href="{% url 'pdashboard'  %}">Home
+							<span class="sr-only">(current)</span>
+						</a>
+					</li>
+					<li class="">
+						<a class="nav-stylehead" href="about.html">Faq</a>
+					</li>
+					
+					
+					<li class="">
+						<a class="nav-stylehead" href="faqs.html">Contact</a>
+					</li>
+					
+					<li class="">
+						<a class="nav-stylehead" href="{% url 'myorder' %}">My Order</a>
+					</li>
+					
+				
+					<li>
+						<p>
+							<h3>Welcome 
+								{{request.session.Firstname}}</h3>
+						</p>
+					</li>
+				</ul>
+
+				
+				
+				<!-- //header lists -->
+				<!-- search -->
+				<div class="agileits_search">
+					<form method='GET' action="{% url 'search'  %}" method="POST">
+						{% csrf_token %}
+						<input type="Search" name="query" id="query" placeholder="Search For Medicines and HealthProducts" required="">
+						<button type="submit" class="btn btn-default" aria-label="Left Align">
+							<span class="fa fa-search" aria-hidden="true"> </span>
+						</button>
+					</form>
+				</div>
+				<!-- //search -->
+				<!-- cart details -->
+				
+				<div class="top_nav_right">
+					<div class="wthreecartaits wthreecartaits2 cart cart box_1">
+						<form action="{% url 'cartpro'  pk=request.session.id %}" method="post" class="last">
+							{% csrf_token %}
+							<button class="w3view-cart" type="submit" name="submit" value="">
+								<i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+							</button>
+						</form>
+					</div>
+				</div>
+				
+				<!-- //cart details -->
+				<div class="clearfix"></div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	
+	<!-- //navigation -->
+	<!-- banner-2 -->
+
+	<!-- //banner-2 -->
+	<!-- page -->
+	
+	<div class="services-breadcrumb">
+		<div class="agile_inner_breadcrumb">
+			<div class="container">
+				<ul class="w3_short">
+					<li>
+						<a href="{% url 'homepharmacy' %}">Home</a>
+						<i>|</i>
+					</li>
+					<li>Add To Cart</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- //page -->
+	<!-- checkout page -->
+	
+	<div class="privacy">
+		<div class="container">
+			<!-- tittle heading -->
+			<h3 class="tittle-w3l">Add To Cart
+				
+			</h3>
+			<!-- //tittle heading -->
+			<div class="checkout-right">
+				<h4>Your Products:
+					<span></span>
+				</h4>
+				<div class="table-responsive">
+					<table class="timetable_sub">
+						<thead>
+							<tr>
+								
+								<th>Product</th>
+								<th>Quantity</th>
+								<th>Product Name</th>
+
+								<th>Price</th>
+								<th>Total</th>
+								<th>Remove</th>
+							</tr>
+						</thead>
+						{% if key21 %}
+						<tbody>
+							{% for i in key21 %}
+							
+							<tr class="rem1">
+								
+								<td class="invert-image">
+									<a href="single2.html">
+										<img src="{{MEDIA_URL}}{{i.product_id.Image.url}}"  width="100" height="100" alt=" "> 
+									</a>
+								</td>
+								
+								
+								<td class="invert">
+									<form action="{% url 'change_cqty' pk=i.id %}" method="POST">
+										{% csrf_token %}
+
+										<input type="number" name="cartqty" value="{{i.cartqty}}" max="100" min="1">
+
+										<button type="submit" class="btn btn-primary">Update</button>
+										
+									</form>
+									
+									
+								</td>
+								<td class="invert">{{i.Productname}}</td>
+								<td class="invert">{{i.Price}}</td>
+								<td class="invert">{{i.Total}}</td>
+								
+								<td class="invert">
+									<form action="{% url 'deletecartPro' pk=i.id %}">
+										{% csrf_token %}
+
+										<input type="hidden" name="id"  value="{{i.id}}">
+														
+										
+								          <button type="submit" class="btn btn-primary">Delete</button>
+										
+										
+									</form>
+
+								</td>
+
+							</tr>
+							
+							{% endfor %}
+						</tbody>
+						
+						{% endif %}
+					</table>
+					<br><br>
+					<div class="col-lg-8">
+						<div class="card">
+						    <div class="card-header">
+						        <h4 class="card-title">Cart Totals</h4>
+						    </div>
+						    <div class="card-body">
+						        <div class="table-responsive">
+							  <table class="table header-border table-hover verticle-middle">
+							      
+							      <tbody>
+								<tr>
+								    <th><h3>Cart Subtotal</h3></th>
+								    <td><h3>{{sub_total}}</h3></td>
+								    
+								</tr>
+								<tr>
+								    <th><h3>Shipping and Handling</h3></th>
+								    <td><h3>Free Shipping</h3></td>
+								    
+								</tr>
+								<tr>
+								    <th><h3>Order Total</h3></th>
+								    <td><h3>{{sub_total}}</h3></td>
+								    
+								</tr>
+								
+								
+								
+							      </tbody>
+							      
+							  </table>
+
+								<form action="{% url 'checkout' pk=request.session.id %}" method="POST">
+									{% csrf_token %}
+									<!-- <button type="button" class="btn btn-primary">Add to cart <span class="btn-icon-right"><i class="fa fa-shopping-cart"></i></span> 
+									</button> -->
+									<button type="submit" class="btn btn-primary">CHECK OUT</button>
+								</form> 
+							 
+						        </div>
+						    </div>
+						</div>
+					 </div>
+
+				
+				</div>
+				</div>
+			</div>
+		
+	</div>
+	
+	
+	
+			<!-- <div class="copy-right">
+				<div class="container">
+					<p>© 2021 Doctor Finder. All Rights Reserved 
+						
+					</p>
+				</div>
+			</div> -->
+			<!-- //copyright -->
+		
+			<!-- js-files -->
+			<!-- jquery -->
+			<script src="{% static  '/customer/js/jquery-2.1.4.min.js' %}"></script>
+			<!-- //jquery -->
+		
+			
+			<!-- Large modal -->
+			<!-- <script>
+				$('#').modal('show');
+			</script> -->
+			<!-- //popup modal (for signin & signup)-->
+		
+			<!-- cart-js -->
+			<!-- <script src="{% static  '/customer/js/minicart.js' %}"></script>
+			<script>
+				paypalm.minicartk.render(); //use only unique class names other than paypalm.minicartk.Also Replace same class name in css and minicart.min.js
+		
+				paypalm.minicartk.cart.on('checkout', function (evt) {
+					var items = this.items(),
+						len = items.length,
+						total = 0,
+						i;
+		
+					// Count the number of each item in the cart
+					for (i = 0; i < len; i++) {
+						total += items[i].get('quantity');
+					}
+		
+					if (total < 3) {
+						alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
+						evt.preventDefault();
+					}
+				});
+			</script> -->
+			<!-- //cart-js -->
+		
+			
+			
+		
+			<!-- flexisel (for special offers) -->
+			<script src="{% static  '/customer/js/jquery.flexisel.js'%}"></script>
+			<script>
+				$(window).load(function () {
+					$("#flexiselDemo1").flexisel({
+						visibleItems: 3,
+						animationSpeed: 1000,
+						autoPlay: true,
+						autoPlaySpeed: 3000,
+						pauseOnHover: true,
+						enableResponsiveBreakpoints: true,
+						responsiveBreakpoints: {
+							portrait: {
+								changePoint: 480,
+								visibleItems: 1
+							},
+							landscape: {
+								changePoint: 640,
+								visibleItems: 2
+							},
+							tablet: {
+								changePoint: 768,
+								visibleItems: 2
+							}
+						}
+					});
+		
+				});
+			</script>
+			<!-- //flexisel (for special offers) -->
+		
+			
+			
+		
+			<!-- smoothscroll -->
+			<script src="{% static  '/customer/js/SmoothScroll.min.js' %}"></script>
+			<!-- //smoothscroll -->
+		
+			<!-- start-smooth-scrolling -->
+			<script src="{% static  '/customer/js/move-top.js' %}"></script>
+			<script src="{% static  '/customer/js/easing.js' %}"></script>
+			<script>
+				jQuery(document).ready(function ($) {
+					$(".scroll").click(function (event) {
+						event.preventDefault();
+		
+						$('html,body').animate({
+							scrollTop: $(this.hash).offset().top
+						}, 1000);
+					});
+				});
+			</script>
+			<!-- //end-smooth-scrolling -->
+		
+			<!-- smooth-scrolling-of-move-up -->
+			<script>
+				$(document).ready(function () {
+					/*
+					var defaults = {
+						containerID: 'toTop', // fading element id
+						containerHoverID: 'toTopHover', // fading element hover id
+						scrollSpeed: 1200,
+						easingType: 'linear' 
+					};
+					*/
+					$().UItoTop({
+						easingType: 'easeOutQuart'
+					});
+		
+				});
+			</script>
+			<!-- //smooth-scrolling-of-move-up -->
+		
+			<!-- for bootstrap working -->
+			<script src="{% static  '/customer/js/bootstrap.js' %}"></script>
+			<!-- //for bootstrap working -->
+			<!-- //js-files -->
+		
+		
+		</body>
+		</html>

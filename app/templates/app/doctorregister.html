@@ -1,0 +1,335 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from azim.commonsupport.com/Docpro/register-page.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 02 Dec 2020 04:50:40 GMT -->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<title>Docpro - Doctor Registration Form</title>
+
+<!-- Fav Icon -->
+<link rel="icon" href="{% static '/assets/images/favicon.ico' %}" type="image/x-icon">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+
+<!-- Stylesheets -->
+<link href="{% static '/assets/css/font-awesome-all.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/flaticon.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/owl.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/bootstrap.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/jquery.fancybox.min.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/animate.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/color.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/nice-select.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/style.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/responsive.css' %}" rel="stylesheet">
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        function check_fname(){
+            var f=document.frm.fname.value;
+            var reg=/^[A-Za-z]+$/;
+
+            if(f.trim()==""){
+                document.getElementById("error").innerHTML="please Enter valid fname";
+                // swal("Good job!", "Enter valid firstname", "success");
+            }
+            else if(!reg.test(f)){
+                document.getElementById("error").innerHTML="please Enter only alphabets";
+            }
+            else{
+                document.getElementById("error").innerHTML="";
+            }   
+        }
+        function check_lname(){
+            var l=document.frm.lname.value;
+            var reg=/^[A-Za-z]+$/;
+
+            if(l.trim()==""){
+                document.getElementById("error1").innerHTML="please Enter valid lname";
+            }
+            else if(!reg.test(l)){
+                document.getElementById("error1").innerHTML="please Enter only alphabets";
+            }
+            else{
+                document.getElementById("error1").innerHTML="";
+            }
+            
+        }
+        function check_email(){
+            // var e=document.frm.email.value;
+            // var reg=/^[@.]+$/;
+
+            // if(e.trim()==""){
+            //     document.getElementById("error2").innerHTML="please Enter Email";
+            // }
+            // else if(!reg.test(e)){
+            //     document.getElementById("error2").innerHTML="please Enter valid Email!!";
+            // }
+            // else{
+            //     document.getElementById("error2").innerHTML="";
+            // }
+
+            var x=document.frm.email.value;  
+            var atposition=x.indexOf("@");  
+            var dotposition=x.lastIndexOf(".");  
+            if (atposition<1 || dotposition<atposition+2 || dotposition+2>=x.length){ 
+            document.getElementById("error2").innerHTML="Please enter a valid e-mail address"; 
+            // alert("Please enter a valid e-mail address");  
+            return false;  
+            }
+            
+        }
+        function check_pass(){
+            var pw=document.frm.pass.value;
+            // var reg=/^[A-Za-z0-9@]+$/;
+
+            // if(p.trim()==""){
+            //     document.getElementById("error3").innerHTML="please Enter Passsword!!";
+            // }
+            // else if(!reg.test(p)){
+            //     document.getElementById("error3").innerHTML="please Enter valid Password!!";
+            // }
+            // else{
+            //     document.getElementById("error3").innerHTML="";
+            // }
+            if(pw == "") {  
+                document.getElementById("error3").innerHTML = "**Fill the password please!";  
+                return false;  
+            }  
+            
+            //minimum password length validation  
+            if(pw.length < 8) {  
+                document.getElementById("error3").innerHTML = "**Password length must be atleast 8 characters";  
+                return false;  
+            }
+
+            //maximum length of password validation  
+            if(pw.length > 15) {  
+                document.getElementById("error3").innerHTML = "**Password length must not exceed 15 characters";  
+                return false;  
+            } 
+            // else 
+            // {  
+            //     alert("Password is correct");  
+            // }
+
+            
+        }
+        function check_cpass(){
+            var pw=document.frm.cpass.value;
+            // var pw = document.getElementById("pswd").value;  
+            //check empty password field  
+            if(pw == "") {  
+                document.getElementById("error4").innerHTML = "**Fill the password please!";  
+                return false;  
+            }  
+            
+            //minimum password length validation  
+            if(pw.length < 8) {  
+                document.getElementById("error4").innerHTML = "**Password length must be atleast 8 characters";  
+                return false;  
+            }
+
+            //maximum length of password validation  
+            if(pw.length > 15) {  
+                document.getElementById("error4").innerHTML = "**Password length must not exceed 15 characters";  
+                return false;  
+            } 
+            // else 
+            // {  
+            //     alert("Password is correct");  
+            // } 
+
+            // var reg=/^[A-Za-z0-9@]+$/;
+
+            // if(p.trim()==""){
+            //     document.getElementById("error4").innerHTML="please Enter Passsword!!";
+            // }
+            // else if(!reg.test(p)){
+            //     document.getElementById("error4").innerHTML="please Enter valid ConfirmPassword!!";
+            // }
+            // else{
+            //     document.getElementById("error4").innerHTML="";
+            // }
+            
+        }
+
+    </script>
+
+</head>
+
+
+<!-- page wrapper -->
+<body>
+
+    <div class="boxed_wrapper">
+
+        <!-- preloader -->
+        <div class="preloader"></div>
+        <!-- preloader -->
+
+            <!--sticky Header-->
+            <div class="sticky-header">
+                <div class="auto-container">
+                    <div class="outer-box">
+                        <div class="logo-box">
+                            <figure class="logo"><a href="index-2.html"><img src="{% static '/assets/images/small-logo.png' %}" alt=""></a></figure>
+                        </div>
+                        <div class="menu-area">
+                            <nav class="main-menu clearfix">
+                                <!--Keep This Empty / Menu will come through Javascript-->
+                            </nav>
+                        </div>
+                        <!-- <div class="btn-box"><a href="register-page.html" class="theme-btn-one"><i class="icon-image"></i>Join Now</a></div> -->
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- main-header end -->
+
+        <!--page-title-two-->
+        <section class="page-title-two">
+            <div class="title-box centred bg-color-2">
+                <div class="pattern-layer">
+                    <div class="pattern-1" style="background-image: url({% static '/assets/images/shape/shape-70.png' %});"></div>
+                    <div class="pattern-2" style="background-image: url({% static '/assets/images/shape/shape-71.png' %});"></div>
+                </div>
+                <div class="auto-container">
+                    <div class="title">
+                        <h1>Register</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="lower-content">
+                <div class="auto-container">
+                    <ul class="bread-crumb clearfix">
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li>Sign Up</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!--page-title-two end-->
+
+
+        <!-- registration-section -->
+        <section class="registration-section bg-color-3">
+            <div class="pattern">
+                <div class="pattern-1" style="background-image: url({% static '/assets/images/shape/shape-85.png' %});"></div>
+                <div class="pattern-2" style="background-image: url({% static '/assets/images/shape/shape-86.png' %});"></div>
+            </div>
+            <div class="auto-container">
+                <div class="inner-box">
+                    <div class="content-box">
+                        <div class="title-box">
+                            <h3>Doctor Registration</h3>
+                            <a href="{% url 'paitentregistepage'%}">Not a Doctor?</a>
+                        </div>
+                        <div class="inner">
+                            {% if msg %}
+                                <strong><p style="color: red;">{{msg}}</p></strong>
+                            {% endif %}
+                            <form action="{% url 'insert' %}" method="post" class="registration-form" name="frm">
+                                {% csrf_token %}
+                                    <input type="hidden" name="role" id="" value="Doctor">
+                                <div class="row clearfix">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                        <label>Fast name</label>
+                                        <input type="text" name="fname" placeholder="Enter your name" required="" onblur="check_fname();">
+                                        <td>
+                                            <span id="error" style="color: red;"></span>
+                                        </td>       
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                        <label>Last name</label>
+                                        <input type="text" name="lname" placeholder="Enter your name" required="" onblur="check_lname();">
+                                        <td>
+                                            <span id="error1" style="color: red;"></span>
+                                        </td>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                        <label>Email</label>
+                                        <input type="email" name="email" placeholder="Enter your email" required="" onblur="check_email();">
+                                        <td>
+                                            <span id="error2" style="color: red;"></span>
+                                        </td>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                        <label>Password</label>
+                                        <input type="password" name="pass" placeholder="Your password" required="" minlength="6" maxlength="10" onblur="check_pass();">
+                                        <td>
+                                            <span id="error3" style="color: red;"></span>
+                                        </td>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                        <label>Confirm password</label>
+                                        <input type="password" name="cpass" placeholder="Confirm password" required="" minlength="6" maxlength="10" onblur="check_cpass();">
+                                        <td>
+                                            <span id="error4" style="color: red;"></span>
+                                        </td>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                        <div class="custom-check-box">
+                                            <div class="custom-controls-stacked">
+                                                <label class="custom-control material-checkbox">
+                                                    <input type="checkbox" class="material-control-input" required="">
+                                                    <span class="material-control-indicator"></span>
+                                                    <span class="description">I accept <a href="{% url 'termscondtions' %}">terms</a> and <a href="{% url 'termscondtions' %}">conditions</a> and general policy </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn">
+                                        <button type="submit" class="theme-btn-one">Register Now<i class="icon-Arrow-Right"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="text"><span>or</span></div>
+                            <div class="login-now"><p>Already have an account? <a href="{% url 'doctorlogin' %}">Login Now</a></p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- registration-section end -->
+
+        <!--Scroll to top-->
+        <button class="scroll-top scroll-to-target" data-target="html">
+            <span class="fa fa-arrow-up"></span>
+        </button>
+    </div>
+
+
+    <!-- jequery plugins -->
+    <script src="{% static '/assets/js/jquery.js' %}"></script>
+    <script src="{% static '/assets/js/popper.min.js' %}"></script>
+    <script src="{% static '/assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static '/assets/js/owl.js' %}"></script>
+    <script src="{% static '/assets/js/wow.js' %}"></script>
+    <script src="{% static '/assets/js/validation.js' %}"></script>
+    <script src="{% static '/assets/js/jquery.fancybox.js' %}"></script>
+    <script src="{% static '/assets/js/appear.js' %}"></script>
+    <script src="{% static '/assets/js/scrollbar.js' %}"></script>
+    <script src="{% static '/assets/js/tilt.jquery.js' %}"></script>
+    <script src="{% static '/assets/js/jquery.paroller.min.js' %}"></script>
+    <script src="{% static '/assets/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static '/assets/js/product-filter.js' %}"></script>
+
+    <!-- map script -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-CE0deH3Jhj6GN4YvdCFZS7DpbXexzGU"></script>
+    <script src="{% static '/assets/js/gmaps.js' %}"></script>
+    <script src="{% static '/assets/js/map-helper.js' %}"></script>
+
+    <!-- main-js -->
+    <script src="{% static '/assets/js/script.js' %}"></script>
+
+</body><!-- End of .page_wrapper -->
+
+<!-- Mirrored from azim.commonsupport.com/Docpro/register-page.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 02 Dec 2020 04:50:44 GMT -->
+</html>

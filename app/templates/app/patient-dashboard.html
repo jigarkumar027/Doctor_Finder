@@ -1,0 +1,446 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from azim.commonsupport.com/Docpro/patient-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 02 Dec 2020 04:53:46 GMT -->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<title>DoctorFinder - Patient Dashboard </title>
+
+<!-- Fav Icon -->
+<link rel="icon" href="{% static '/assets/images/favicon.ico' %}" type="image/x-icon">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+
+<!-- Stylesheets -->
+<link href="{% static '/assets/css/font-awesome-all.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/flaticon.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/owl.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/bootstrap.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/jquery.fancybox.min.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/animate.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/color.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/nice-select.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/style.css' %}" rel="stylesheet">
+<link href="{% static '/assets/css/responsive.css' %}" rel="stylesheet">
+
+</head>
+
+
+<!-- page wrapper -->
+<body>
+
+    <div class="boxed_wrapper">
+
+        <!-- preloader -->
+        <div class="preloader"></div>
+        <!-- preloader -->
+
+
+        <!-- main header -->
+        <header class="main-header style-three">
+
+            <!-- header-lower -->
+            <div class="header-lower">
+                <div class="outer-box clearfix">
+                    <div class="left-column pull-left">
+                        <div class="logo-box">
+                            <figure class="logo"><a href="{% url 'pdashboard' %}"><img src="{% static '/assets/images/FL.png'%}" alt=""></a></figure>
+                        </div>
+                        <div class="menu-area">
+                            <!--Mobile Navigation Toggler-->
+                            <div class="mobile-nav-toggler">
+                                <i class="icon-bar"></i>
+                                <i class="icon-bar"></i>
+                                <i class="icon-bar"></i>
+                            </div>
+                            <nav class="main-menu navbar-expand-md navbar-light">
+                                <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+                                    <ul class="navigation clearfix">
+                                        <li class="dropdown"><a>Home</a>
+                                            <ul>
+                                                <li><a href="{% url 'pdashboard' %}">Home Page</a></li>
+                                            </ul>
+                                        </li>
+                                        <!-- <li class="current dropdown"><a>Patients</a>
+                                            <ul>
+                                                <li class="dropdown"><a>Patient Dashboard</a>
+                                                    <ul>
+                                                        <li><a href="{% url 'pdashboard' %}">Dashboard</a></li>
+                                                        <li><a href="{% url 'showalldoctor' %}">Show Doctors</a></li>
+                                                        <li><a href="{% url 'showappo' %}">Your Appointment</a></li>
+                                                        <li><a href="{% url 'homepharmacy' %}">Pharmacy</a></li>
+                                                        <li><a href="message-2.html">Messages</a></li>
+                                                        <li><a href="{% url 'profilepage' pk=request.session.id %}">My Profile</a></li>
+                                                        <li><a href="{% url 'pchangepass' %}">Change Password</a></li>
+                                                        <li><a href="{% url 'logout' pk=request.session.id %}">Logout</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="submit.html">Submit Review</a></li>
+                                                <li><a href="{% url 'appointmentp' pk=request.session.id %}">Book Appointment</a></li>
+                                                <li><a href="{% url 'paitentregistepage' %}">Register Page</a></li>
+                                            </ul>
+                                        </li> -->
+                                        <!-- <li class="dropdown"><a href="index-2.html">Elements</a>
+                                            <div class="megamenu">
+                                                <div class="row clearfix">
+                                                    <div class="col-lg-6 col-md-12 col-sm-12 column">
+                                                        <ul>
+                                                            <li><h4>Elements 1</h4></li>
+                                                            <li><a href="about-element-1.html">About Block 01</a></li>
+                                                            <li><a href="about-element-2.html">About Block 02</a></li>
+                                                            <li><a href="about-element-3.html">About Block 03</a></li>
+                                                            <li><a href="feature-element-1.html">Feature Block 01</a></li>
+                                                            <li><a href="feature-element-2.html">Feature Block 02</a></li>
+                                                            <li><a href="process-element-1.html">Process Block 01</a></li>
+                                                            <li><a href="process-element-2.html">Process Block 02</a></li>
+                                                            <li><a href="team-element-1.html">Team Block 01</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-12 col-sm-12 column">
+                                                        <ul>
+                                                            <li><h4>Elements 2</h4></li>
+                                                            <li><a href="team-element-2.html">Team Block 02</a></li>
+                                                            <li><a href="news-element-1.html">News Block 01</a></li>
+                                                            <li><a href="news-element-2.html">News Block 02</a></li>
+                                                            <li><a href="category-element-1.html">Category Block 01</a></li>
+                                                            <li><a href="category-element-2.html">Category Block 02</a></li>
+                                                            <li><a href="faq-element.html">Faq Block</a></li>
+                                                            <li><a href="cta-element.html">CTA Block</a></li>
+                                                            <li><a href="clients-element.html">Clients Block</a></li>
+                                                        </ul>
+                                                    </div>                                    
+                                                </div>                                        
+                                            </div>
+                                        </li>  
+                                    </ul> -->
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="right-column pull-right">
+                        <div class="author-box">
+                            <div class="author">
+                                <figure class="author-image"><img src="assets/images/resource/author-1.png" alt=""></figure>
+                                <div class="select-box">
+                                    <!-- <select class="wide"> -->
+                                       <option><span> Welcome, {{request.session.Firstname}} {{request.session.Lastname}}</span></option>
+                                    <!-- </select> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--sticky Header-->
+            <div class="sticky-header">
+                <div class="auto-container">
+                    <div class="outer-box">
+                        <div class="logo-box">
+                            <figure class="logo"><a href="{% url 'pdashboard' %}"><img src="{% static '/assets/images/FL.png' %}" alt=""></a></figure>
+                        </div>
+                        <div class="menu-area">
+                            <nav class="main-menu clearfix">
+                                <!--Keep This Empty / Menu will come through Javascript-->
+                            </nav>
+                        </div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- main-header end -->
+
+        <!-- Mobile Menu  -->
+        <div class="mobile-menu">
+            <div class="menu-backdrop"></div>
+            <div class="close-btn"><i class="fas fa-times"></i></div>
+            
+            <nav class="menu-box">
+                <div class="nav-logo"><a href="index-2.html"><img src="{% static '/assets/images/logo-2.png' %}" alt="" title=""></a></div>
+                <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
+            </nav>
+        </div><!-- End Mobile Menu -->
+
+
+        <!--page-title-two-->
+        <section class="page-title-two">
+            <div class="title-box centred bg-color-2">
+                <div class="pattern-layer">
+                    <div class="pattern-1" style="background-image: url({% static '/assets/images/shape/shape-70.png' %});"></div>
+                    <div class="pattern-2" style="background-image: url({% static '/assets/images/shape/shape-71.png' %});"></div>
+                </div>
+                <div class="auto-container">
+                    <div class="title">
+                        <h1>Patient Dashboard</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="lower-content">
+                <ul class="bread-crumb clearfix">
+                    <li><a href="{% url 'pdashboard' %}">Home</a></li>
+                    <li>Patient Dashboard</li>
+                </ul>
+            </div>
+        </section>
+        <!--page-title-two end-->
+
+
+        <!-- patient-dashboard -->
+        <section class="doctors-dashboard bg-color-3">
+            <div class="left-panel">
+                <div class="profile-box">
+                    <div class="upper-box">
+                        <figure class="profile-image"><img src="assets/images/resource/profile-2.png" alt=""></figure>
+                        <div class="title-box centred">
+                            <div class="inner">
+                                <h3>Welcome, {{request.session.Firstname}} {{request.session.Lastname}}</h3>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-info">
+                        <ul class="list clearfix">
+                            <li><a href="{% url 'pdashboard' %}" class="current"><i class="fas fa-columns"></i>Dashboard</a></li>
+                            <li><a href="{% url 'showalldoctor' %}"><i class="fas fa-heart"></i>Show Doctors</a></li>
+                            <li><a href="{% url 'showappo' %}"><i class="fas fa-clock"></i>Your Appointment</a></li>
+                            <li><a href="{% url 'homepharmacy' %}"><i class="fas fa-clock"></i>Pharmacy</a></li>
+                            <!-- <li><a href="message-2.html"><i class="fas fa-comments"></i>Messages</a><span>20</span></li> -->
+                            <li><a href="{% url 'profilepage' pk=request.session.id %}"><i class="fas fa-user"></i>My Profile</a></li>
+                            <li><a href="{% url 'pchangepass' %}"><i class="fas fa-unlock-alt"></i>Change Password</a></li>
+                            <li><a href="{% url 'logout' pk=request.session.id %}"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="right-panel">
+                <div class="content-container">
+                    <div class="outer-container">
+                        <div class="feature-content">
+                            <div class="row clearfix">
+                        
+                                <div class="col-xl-6 col-lg-12 col-md-12 feature-block">
+                                    <div class="feature-block-two">
+                                        <div class="inner-box">
+                                            <div class="pattern">
+                                                <div class="pattern-1" style="background-image: url({% static '/assets/images/shape/shape-81.png' %});"></div>
+                                                <div class="pattern-2" style="background-image: url({% static '/assets/images/shape/shape-82.png' %});"></div>
+                                            </div>
+                                            <div class="icon-box"><i class="icon-Dashboard-2"></i></div>
+                                            <h3>{{doccount}}</h3>
+                                            <h5>Total Doctor</h5>
+                                            <!-- <p>Lorem ipsum dolor  amet eiusmod tempor.</p> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-12 col-md-12 feature-block">
+                                    <div class="feature-block-two">
+                                        <div class="inner-box">
+                                            <div class="pattern">
+                                                <div class="pattern-1" style="background-image: url({% static '/assets/images/shape/shape-83.png' %});"></div>
+                                                <div class="pattern-2" style="background-image: url({% static '/assets/images/shape/shape-84.png' %});"></div>
+                                            </div>
+                                            <div class="icon-box"><i class="icon-Dashboard-3"></i></div>
+                                            <h3>{{appocount}}</h3>
+                                            <h5>Appointments</h5>
+                                            <!-- <p>Lorem ipsum dolor  amet eiusmod tempor.</p> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="doctors-appointment">
+                            <div class="title-box">
+                                <h3>Patients Appointments</h3>
+                                <!-- <div class="btn-box">
+                                    <a href="patient-dashboard.html" class="theme-btn-one">Upcoming<i class="icon-Arrow-Right"></i></a>
+                                    <a href="#" class="theme-btn-two">Today</a>
+                                </div> -->
+                            </div>
+                            {% if key60 %}
+                            <div class="doctors-list">
+                                <div class="table-outer">
+                                    <table class="doctors-table">
+                                        <thead class="table-header">
+                                            <tr>
+                                                <th>Patient Name</th>
+                                                <th>Status</th>
+                                                <th>Appt Date</th>
+                                                <th>Purpose</th>
+                                                <th>Type</th>
+                                                <th>Paid Amount</th>
+                                                <th>&nbsp;</th>
+                                                <th>&nbsp;</th>
+                                            </tr>    
+                                        </thead>
+                                        <tbody>
+                                            {% for i in key60 %}
+                                            <tr>
+                                                
+                            
+                                                <td>
+                                                    <div class="name-box">
+                                                        <figure class="image"><img src="{{MEDIA_URL}}{{key2.profile_pic.url}}" alt=""></figure>
+                                                        <h5>{{i.patient_id.Firstname}} {{i.patient_id.Lastname}}</h5>
+                                                        <span class="designation">{{i.patient_id.id}}</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p>Status</p>
+                                                    <span class="time">{{i.appointment_status}}</span>
+                                                </td>
+                                                <td>
+                                                    <p>{{i.appointment_bookdate}}</p>
+                                                    <span class="time">{{i.appotime}}</span>
+                                                </td>
+                                                <td>
+                                                    <p>General</p>
+                                                </td>
+                                                <td>
+                                                    <p>Old Patient</p>
+                                                </td>
+                                                <td>
+                                                    <p>{{i.total}}</p>
+                                                </td>
+                                                <td>
+                                                    <label for="Accept" class="accept">Accepted</label>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>    
+                                    </table>
+                                </div>
+                            </div>
+                    
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- doctors-dashboard -->
+        
+
+
+        <!-- main-footer -->
+        <footer class="main-footer">
+            <div class="footer-top">
+                <div class="pattern-layer">
+                    <div class="pattern-1" style="background-image: url({% static '/assets/images/shape/shape-30.png' %});"></div>
+                    <div class="pattern-2" style="background-image: url({% static '/assets/images/shape/shape-31.png' %});"></div>
+                </div>
+                <div class="auto-container">
+                    <div class="widget-section">
+                        <div class="row clearfix">
+                            
+                            <div class="col-lg-2 col-md-6 col-sm-12 footer-column">
+                                <div class="footer-widget links-widget">
+                                    <div class="widget-title">
+                                        <h3>About</h3>
+                                    </div>
+                                    <div class="widget-content">
+                                        <ul class="links clearfix">
+                                            <li><a href="{% url 'aboutus' %}">About Us</a></li>
+                                            <li><a href="index-2.html">Listing</a></li>
+                                            <li><a href="index-2.html">How It Works</a></li>
+                                            <li><a href="index-2.html">Our Services</a></li>
+                                            <li><a href="index-2.html">Our Blog</a></li>
+                                            <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
+                                <div class="footer-widget links-widget">
+                                    <div class="widget-title">
+                                        <h3>Useful Links</h3>
+                                    </div>
+                                    <div class="widget-content">
+                                        <ul class="links clearfix">
+                                            <li><a href="index-2.html">Specialist</a></li>
+                                            <li><a href="index-2.html">Clinic</a></li>
+                                            <li><a href="index-2.html">Hospital</a></li>
+                                            <li><a href="{% url 'doctorlogin' %}">Join as a Doctor</a></li>
+                                            <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 footer-column">
+                                <div class="footer-widget contact-widget">
+                                    <div class="widget-title">
+                                        <h3>Contacts</h3>
+                                    </div>
+                                    <div class="widget-content">
+                                        <ul class="info-list clearfix">
+                                            <li><i class="fas fa-map-marker-alt"></i>
+                                                Flat 20, Reynolds Neck, North Helenaville, FV77 8WS
+                                            </li>
+                                            <li><i class="fas fa-microphone"></i>
+                                                <a href="tel:23055873407">+2(305) 587-3407</a>
+                                            </li>
+                                            <li><i class="fas fa-envelope"></i>
+                                                <a href="mailto:info@example.com">info@example.com</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="auto-container">
+                    <div class="inner-box clearfix">
+                        <div class="copyright pull-left"><p><a href="{% url 'pdashboard' %}">DoctorFinder</a> &copy; 2020 All Right Reserved</p></div>
+                        <ul class="footer-nav pull-right clearfix">
+                            <li><a href="{% url 'termscondtions' %}">Terms of Service</a></li>
+                            <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- main-footer end -->
+
+
+        <!--Scroll to top-->
+        <button class="scroll-top scroll-to-target" data-target="html">
+            <span class="fa fa-arrow-up"></span>
+        </button>
+    </div>
+
+
+    <!-- jequery plugins -->
+    <script src="{% static '/assets/js/jquery.js' %}"></script>
+    <script src="{% static '/assets/js/popper.min.j' %}s"></script>
+    <script src="{% static '/assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static '/assets/js/owl.js' %}"></script>
+    <script src="{% static '/assets/js/wow.js' %}"></script>
+    <script src="{% static '/assets/js/validation.js' %}"></script>
+    <script src="{% static '/assets/js/jquery.fancybox.js' %}"></script>
+    <script src="{% static '/assets/js/appear.js' %}"></script>
+    <script src="{% static '/assets/js/scrollbar.js' %}"></script>
+    <script src="{% static '/assets/js/tilt.jquery.js' %}"></script>
+    <script src="{% static '/assets/js/jquery.paroller.min.js' %}"></script>
+    <script src="{% static '/assets/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static '/assets/js/product-filter.js' %}"></script>
+
+    <!-- map script -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-CE0deH3Jhj6GN4YvdCFZS7DpbXexzGU"></script>
+    <script src="{% static '/assets/js/gmaps.js' %}"></script>
+    <script src="{% static '/assets/js/map-helper.js' %}"></script>
+
+    <!-- main-js -->
+    <script src="{% static '/assets/js/script.js' %}"></script>
+
+</body><!-- End of .page_wrapper -->
+
+<!-- Mirrored from azim.commonsupport.com/Docpro/patient-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 02 Dec 2020 04:53:46 GMT -->
+</html>
